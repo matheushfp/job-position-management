@@ -1,5 +1,6 @@
 package com.matheushfp.job_position_management.modules.candidate.controllers;
 
+import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsException;
 import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.useCases.CreateCandidateUseCase;
 import jakarta.validation.Valid;
@@ -32,10 +33,9 @@ public class CandidateController {
                     .toUri();
 
             return ResponseEntity.created(location).body(candidate);
-        } catch(Exception e) {
+        } catch(CandidateAlreadyExistsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
-
 
 }

@@ -1,0 +1,2 @@
+ALTER TABLE jobs
+    ALTER COLUMN company_id SET NOT NULL;
