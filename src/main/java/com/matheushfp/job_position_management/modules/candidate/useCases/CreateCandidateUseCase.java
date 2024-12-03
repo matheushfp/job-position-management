@@ -4,6 +4,7 @@ import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsE
 import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,11 +13,17 @@ public class CreateCandidateUseCase {
     @Autowired
     private CandidateRepository candidateRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public CandidateEntity execute(CandidateEntity candidateEntity) {
         this.candidateRepository.findByUsernameOrEmail(candidateEntity.getUsername(), candidateEntity.getEmail())
                 .ifPresent((candidate) -> {
                     throw new CandidateAlreadyExistsException();
                 });
+
+        String passwordHash = passwordEncoder.encode(candidateEntity.getPassword());
+        candidateEntity.setPassword(passwordHash);
 
         return this.candidateRepository.save(candidateEntity);
     }

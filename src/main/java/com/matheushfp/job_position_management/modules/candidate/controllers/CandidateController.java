@@ -1,6 +1,7 @@
 package com.matheushfp.job_position_management.modules.candidate.controllers;
 
 import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsException;
+import com.matheushfp.job_position_management.exceptions.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.useCases.CreateCandidateUseCase;
 import jakarta.validation.Valid;
@@ -34,7 +35,9 @@ public class CandidateController {
 
             return ResponseEntity.created(location).body(candidate);
         } catch(CandidateAlreadyExistsException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+            ErrorMessageDTO errorMessage = new ErrorMessageDTO(e.getMessage());
+
+            return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
         }
     }
 

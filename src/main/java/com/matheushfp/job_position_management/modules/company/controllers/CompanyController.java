@@ -1,6 +1,7 @@
 package com.matheushfp.job_position_management.modules.company.controllers;
 
 import com.matheushfp.job_position_management.exceptions.CompanyAlreadyExistsException;
+import com.matheushfp.job_position_management.exceptions.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.company.entities.CompanyEntity;
 import com.matheushfp.job_position_management.modules.company.useCases.CreateCompanyUseCase;
 import jakarta.validation.Valid;
@@ -34,7 +35,9 @@ public class CompanyController {
 
             return ResponseEntity.created(location).body(company);
         } catch (CompanyAlreadyExistsException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+            ErrorMessageDTO errorMessage = new ErrorMessageDTO(e.getMessage());
+
+            return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
         }
     }
 }
