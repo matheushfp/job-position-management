@@ -1,9 +1,10 @@
 package com.matheushfp.job_position_management.modules.company.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,9 @@ import java.util.UUID;
 @Entity(name = "job")
 @Table(name = "jobs")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobEntity {
 
     @Id
@@ -27,7 +31,6 @@ public class JobEntity {
     @JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)
     private CompanyEntity company;
 
-    @NotNull(message = "[companyId] needs to be specified")
     @Column(name = "company_id")
     private UUID companyId;
 
