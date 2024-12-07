@@ -32,7 +32,7 @@ public class SecurityFilter extends OncePerRequestFilter {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             }
 
-            request.setAttribute("companyId", sub);
+            request.setAttribute("userId", sub);
 
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(sub, null, Collections.emptyList());
             SecurityContextHolder.getContext().setAuthentication(auth);

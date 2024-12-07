@@ -1,7 +1,7 @@
 package com.matheushfp.job_position_management.modules.company.controllers;
 
 import com.matheushfp.job_position_management.exceptions.CompanyAlreadyExistsException;
-import com.matheushfp.job_position_management.exceptions.ErrorMessageDTO;
+import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.company.entities.CompanyEntity;
 import com.matheushfp.job_position_management.modules.company.useCases.CreateCompanyUseCase;
 import jakarta.validation.Valid;

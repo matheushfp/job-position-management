@@ -1,4 +1,4 @@
-package com.matheushfp.job_position_management.exceptions;
+package com.matheushfp.job_position_management.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

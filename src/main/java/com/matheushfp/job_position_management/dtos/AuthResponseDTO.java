@@ -1,4 +1,4 @@
-package com.matheushfp.job_position_management.modules.company.dtos;
+package com.matheushfp.job_position_management.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

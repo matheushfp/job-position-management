@@ -20,8 +20,9 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> { authorize
-                            .requestMatchers("/jobs").authenticated()
-                            .anyRequest().permitAll();
+                        .requestMatchers("/jobs").authenticated()
+                        .requestMatchers("/candidates/me").authenticated()
+                        .anyRequest().permitAll();
                 })
                 .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
         return http.build();

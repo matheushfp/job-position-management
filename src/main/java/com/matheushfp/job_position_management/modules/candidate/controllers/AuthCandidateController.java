@@ -1,10 +1,10 @@
-package com.matheushfp.job_position_management.modules.company.controllers;
+package com.matheushfp.job_position_management.modules.candidate.controllers;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.matheushfp.job_position_management.dtos.AuthRequestDTO;
 import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
+import com.matheushfp.job_position_management.dtos.AuthRequestDTO;
+import com.matheushfp.job_position_management.modules.candidate.useCases.AuthCandidateUseCase;
 import com.matheushfp.job_position_management.dtos.AuthResponseDTO;
-import com.matheushfp.job_position_management.modules.company.useCases.AuthCompanyUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,24 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthCompanyController {
+public class AuthCandidateController {
 
     @Autowired
-    private AuthCompanyUseCase authCompanyUseCase;
+    private AuthCandidateUseCase authCandidateUseCase;
 
-    @PostMapping("/company")
-    public ResponseEntity<Object> authenticate(@RequestBody AuthRequestDTO authCompany) {
+    @PostMapping("/candidate")
+    public ResponseEntity<Object> authenticate(@RequestBody AuthRequestDTO authCandidate) {
 
-        try {
-            String token = this.authCompanyUseCase.execute(authCompany);
+        try{
+            String token = this.authCandidateUseCase.execute(authCandidate);
 
             AuthResponseDTO authResponse = new AuthResponseDTO(token);
 
             return ResponseEntity.ok(authResponse);
-        } catch (BadCredentialsException | JWTCreationException e) {
+        } catch(BadCredentialsException | JWTCreationException e) {
             ErrorMessageDTO errorMessage = new ErrorMessageDTO(e.getMessage());
 
             return new ResponseEntity<>(errorMessage, HttpStatus.UNAUTHORIZED);
         }
+
     }
+
 }
