@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthCandidateController {
@@ -27,7 +29,7 @@ public class AuthCandidateController {
         try{
             String token = this.authCandidateUseCase.execute(authCandidate);
 
-            AuthResponseDTO authResponse = new AuthResponseDTO(token);
+            AuthResponseDTO authResponse = new AuthResponseDTO(token, Duration.ofHours(1).toSeconds());
 
             return ResponseEntity.ok(authResponse);
         } catch(BadCredentialsException | JWTCreationException e) {

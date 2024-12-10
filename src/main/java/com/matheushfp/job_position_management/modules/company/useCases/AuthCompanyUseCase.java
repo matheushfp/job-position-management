@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class AuthCompanyUseCase {
@@ -43,6 +44,7 @@ public class AuthCompanyUseCase {
                     .withIssuer("job_position_management_spring")
                     .withSubject(company.getId().toString())
                     .withExpiresAt(Instant.now().plus(Duration.ofHours(1)))
+                    .withClaim("roles", List.of("COMPANY"))
                     .sign(algorithm);
 
             return token;

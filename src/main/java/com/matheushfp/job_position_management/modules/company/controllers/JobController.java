@@ -6,6 +6,7 @@ import com.matheushfp.job_position_management.modules.company.useCases.CreateJob
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class JobController {
     CreateJobUseCase createJobUseCase;
 
     @PostMapping
+    @PreAuthorize("hasRole('COMPANY')")
     public JobEntity create(@Valid @RequestBody CreateJobRequestDTO body, HttpServletRequest request) {
         var companyId = request.getAttribute("userId");
 
