@@ -5,6 +5,8 @@ import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.useCases.CreateCandidateUseCase;
 import com.matheushfp.job_position_management.modules.candidate.useCases.GetProfileCandidateUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/candidates")
+@Tag(name = "Candidates")
 public class CandidateController {
 
     @Autowired
@@ -47,6 +50,7 @@ public class CandidateController {
 
     @GetMapping("/me")
     @PreAuthorize("hasRole('CANDIDATE')")
+    @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<Object> getProfile(HttpServletRequest request) {
         var candidateId = request.getAttribute("userId");
 

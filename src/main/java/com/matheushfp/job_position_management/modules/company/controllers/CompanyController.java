@@ -4,6 +4,7 @@ import com.matheushfp.job_position_management.exceptions.CompanyAlreadyExistsExc
 import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.company.entities.CompanyEntity;
 import com.matheushfp.job_position_management.modules.company.useCases.CreateCompanyUseCase;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("companies")
+@Tag(name = "Companies")
 public class CompanyController {
 
     @Autowired

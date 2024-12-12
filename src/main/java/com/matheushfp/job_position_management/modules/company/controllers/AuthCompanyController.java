@@ -5,6 +5,8 @@ import com.matheushfp.job_position_management.dtos.AuthRequestDTO;
 import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
 import com.matheushfp.job_position_management.dtos.AuthResponseDTO;
 import com.matheushfp.job_position_management.modules.company.useCases.AuthCompanyUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.time.Duration;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication")
+@SecurityRequirement(name = "bearerAuth")
 public class AuthCompanyController {
 
     @Autowired
