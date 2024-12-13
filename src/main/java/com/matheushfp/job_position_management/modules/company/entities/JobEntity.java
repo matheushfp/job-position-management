@@ -1,5 +1,6 @@
 package com.matheushfp.job_position_management.modules.company.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,7 @@ public class JobEntity {
     private String description;
     private String benefits;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)
     private CompanyEntity company;

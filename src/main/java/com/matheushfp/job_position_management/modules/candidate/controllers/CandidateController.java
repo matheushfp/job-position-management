@@ -3,8 +3,14 @@ package com.matheushfp.job_position_management.modules.candidate.controllers;
 import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsException;
 import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
 import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
+import com.matheushfp.job_position_management.modules.candidate.dtos.GetProfileCandidateResponseDTO;
 import com.matheushfp.job_position_management.modules.candidate.useCases.CreateCandidateUseCase;
 import com.matheushfp.job_position_management.modules.candidate.useCases.GetProfileCandidateUseCase;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +37,13 @@ public class CandidateController {
     private GetProfileCandidateUseCase getProfileCandidateUseCase;
 
     @PostMapping
+    @Operation(summary = "Create a Candidate", description = "Create a Candidate")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201",
+                    content = @Content(schema = @Schema(implementation = CandidateEntity.class))),
+            @ApiResponse(responseCode = "409",
+                    content = @Content(schema = @Schema(example = "{ \"message\": \"Candidate Already Exists\" }")))
+    })
     public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
         try {
             CandidateEntity candidate = this.createCandidateUseCase.execute(candidateEntity);
@@ -51,6 +64,14 @@ public class CandidateController {
     @GetMapping("/me")
     @PreAuthorize("hasRole('CANDIDATE')")
     @SecurityRequirement(name = "bearerAuth")
+    @Operation(summary = "Get Candidate Profile", description = "Get Candidate Profile")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    content = @Content(schema = @Schema(implementation = GetProfileCandidateResponseDTO.class))),
+            @ApiResponse(responseCode = "404",
+                    content = @Content(schema = @Schema(example = "{ message: \"Candidate Not Found\"}"))),
+            @ApiResponse(responseCode = "403")
+    })
     public ResponseEntity<Object> getProfile(HttpServletRequest request) {
         var candidateId = request.getAttribute("userId");
 
