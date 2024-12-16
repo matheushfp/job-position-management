@@ -1,7 +1,7 @@
 package com.matheushfp.job_position_management.modules.candidate.useCases;
 
-import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
-import com.matheushfp.job_position_management.modules.candidate.CandidateRepository;
+import com.matheushfp.job_position_management.modules.candidate.entities.CandidateEntity;
+import com.matheushfp.job_position_management.modules.candidate.repositories.CandidateRepository;
 import com.matheushfp.job_position_management.modules.candidate.dtos.GetProfileCandidateResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

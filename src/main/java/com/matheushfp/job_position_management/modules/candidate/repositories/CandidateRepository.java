@@ -1,5 +1,6 @@
-package com.matheushfp.job_position_management.modules.candidate;
+package com.matheushfp.job_position_management.modules.candidate.repositories;
 
+import com.matheushfp.job_position_management.modules.candidate.entities.CandidateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

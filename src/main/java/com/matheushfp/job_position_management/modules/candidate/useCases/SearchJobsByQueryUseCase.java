@@ -1,4 +1,4 @@
-package com.matheushfp.job_position_management.modules.company.useCases;
+package com.matheushfp.job_position_management.modules.candidate.useCases;
 
 import com.matheushfp.job_position_management.modules.company.entities.JobEntity;
 import com.matheushfp.job_position_management.modules.company.repositories.JobRepository;

@@ -2,7 +2,7 @@ package com.matheushfp.job_position_management.modules.candidate.controllers;
 
 import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsException;
 import com.matheushfp.job_position_management.dtos.ErrorMessageDTO;
-import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
+import com.matheushfp.job_position_management.modules.candidate.entities.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.dtos.GetProfileCandidateResponseDTO;
 import com.matheushfp.job_position_management.modules.candidate.useCases.CreateCandidateUseCase;
 import com.matheushfp.job_position_management.modules.candidate.useCases.GetProfileCandidateUseCase;

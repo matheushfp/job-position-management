@@ -1,8 +1,8 @@
 package com.matheushfp.job_position_management.modules.candidate.useCases;
 
 import com.matheushfp.job_position_management.exceptions.CandidateAlreadyExistsException;
-import com.matheushfp.job_position_management.modules.candidate.CandidateEntity;
-import com.matheushfp.job_position_management.modules.candidate.CandidateRepository;
+import com.matheushfp.job_position_management.modules.candidate.entities.CandidateEntity;
+import com.matheushfp.job_position_management.modules.candidate.repositories.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

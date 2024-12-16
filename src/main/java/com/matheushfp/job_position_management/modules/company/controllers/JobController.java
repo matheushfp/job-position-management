@@ -3,7 +3,7 @@ package com.matheushfp.job_position_management.modules.company.controllers;
 import com.matheushfp.job_position_management.modules.company.dtos.CreateJobRequestDTO;
 import com.matheushfp.job_position_management.modules.company.entities.JobEntity;
 import com.matheushfp.job_position_management.modules.company.useCases.CreateJobUseCase;
-import com.matheushfp.job_position_management.modules.company.useCases.SearchJobsByQueryUseCase;
+import com.matheushfp.job_position_management.modules.candidate.useCases.SearchJobsByQueryUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,4 +1,4 @@
-package com.matheushfp.job_position_management.modules.candidate;
+package com.matheushfp.job_position_management.modules.candidate.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,6 +14,7 @@ import java.util.UUID;
 @Entity(name = "candidate")
 @Table(name = "candidates")
 public class CandidateEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
