@@ -48,7 +48,7 @@ public class JobController {
     @PreAuthorize("hasRole('COMPANY')")
     @Operation(summary = "Create a Job", description = "Create a job position related to a company")
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<JobEntity> create(@Valid @RequestBody CreateJobRequestDTO body, HttpServletRequest request) {
+    public ResponseEntity<Object> create(@Valid @RequestBody CreateJobRequestDTO body, HttpServletRequest request) {
         var companyId = request.getAttribute("userId");
 
         JobEntity jobEntity = JobEntity.builder()
@@ -59,14 +59,20 @@ public class JobController {
                 .companyId(UUID.fromString(companyId.toString()))
                 .build();
 
-        var job = this.createJobUseCase.execute(jobEntity);
+        try {
+            var job = this.createJobUseCase.execute(jobEntity);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(job.getId())
-                .toUri();
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(job.getId())
+                    .toUri();
 
-        return ResponseEntity.created(location).body(job);
+            return ResponseEntity.created(location).body(job);
+        } catch (UserNotFoundException e) {
+            ErrorMessageDTO errorMessage = new ErrorMessageDTO(e.getMessage());
+
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
     }
 
     @GetMapping("/search")
