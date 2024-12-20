@@ -1,5 +1,6 @@
 package com.matheushfp.job_position_management.modules.candidate.useCases;
 
+import com.matheushfp.job_position_management.exceptions.UserNotFoundException;
 import com.matheushfp.job_position_management.modules.candidate.entities.CandidateEntity;
 import com.matheushfp.job_position_management.modules.candidate.repositories.CandidateRepository;
 import com.matheushfp.job_position_management.modules.candidate.dtos.GetProfileCandidateResponseDTO;
@@ -16,7 +17,7 @@ public class GetProfileCandidateUseCase {
 
     public GetProfileCandidateResponseDTO execute(UUID candidateId) {
         CandidateEntity candidate = this.candidateRepository.findById(candidateId)
-                .orElseThrow(() -> new RuntimeException("Candidate Not Found"));
+                .orElseThrow(() -> new UserNotFoundException("Candidate Not Found"));
 
         var candidateResponseDTO = GetProfileCandidateResponseDTO.builder()
                 .id(candidate.getId())
