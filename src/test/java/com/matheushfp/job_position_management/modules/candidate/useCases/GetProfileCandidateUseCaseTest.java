@@ -45,8 +45,8 @@ class GetProfileCandidateUseCaseTest {
 
         var result = getProfileCandidateUseCase.execute(candidateId);
 
-        assertThat(result).hasFieldOrProperty("name");
-        assertThat(result).hasFieldOrProperty("username");
-
+        assertThat(result)
+                .hasFieldOrProperty("name")
+                .hasFieldOrProperty("username");
     }
 }

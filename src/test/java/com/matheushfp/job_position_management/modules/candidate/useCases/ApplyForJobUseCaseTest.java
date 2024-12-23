@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ApplyForJobUseCaseTest {
+class ApplyForJobUseCaseTest {
 
     @InjectMocks
     private ApplyForJobUseCase applyForJobUseCase;

@@ -80,6 +80,7 @@ public class JobController {
     @Operation(summary = "Search Jobs by query", description = "Candidates can search Jobs by query")
     @ApiResponses({
             @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400"),
             @ApiResponse(responseCode = "403", content = @Content(schema = @Schema(implementation = Object.class)))
     })
     public List<JobEntity> search(@RequestParam String query) {
